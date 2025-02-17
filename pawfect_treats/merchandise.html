@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchandise - Pawfect Treats</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Pawfect Treats</h1>
+        <div class="header-icons">
+            <a href="profile.html" class="profile-icon">
+                <img src="IMAGES/profile 2.jpeg" alt="Profile">
+            </a>
+            <a href="cart.html" class="cart-icon">
+                <img src="IMAGES/bsh 1.jpeg" alt="Cart">
+            </a>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="adoption.html">Adopt a Cat</a>
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="guide.html">Care Guide</a>
+        <a href="merchandise.html">Merchandise</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+
+    <main>
+        <!-- Cat Fact Section -->
+        <section class="cat-fact-section">
+            <h2>Did You Know?</h2>
+            <p id="cat-fact">Loading cat facts...</p>
+        </section>
+
+        <!-- Featured Merchandise -->
+        <section class="featured-merch">
+            <h2>Featured Merchandise of the Day</h2>
+            <div class="merch-item">
+                <img class="merch-img" src="IMAGES/toy 1.jpeg" alt="Cat Toy">
+                <div class="merch-details">
+                    <p><strong>Name:</strong> Feather Wand</p>
+                    <p><strong>Description:</strong> A fun interactive toy for your cat!</p>
+                    <p><strong>Price:</strong> RM20.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merchandise Listings -->
+        <section class="merchandise-list">
+            <h2>All Merchandise</h2>
+            <div class="merch-grid">
+                <div class="merch-item">
+                    <img class="merch-img" src="IMAGES/bowl.jpeg" alt="Cat Bowl">
+                    <p><strong>Cat Bowl</strong></p>
+                    <p>Price: RM25.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <div class="merch-item">
+                    <img class="merch-img" src="IMAGES/collar.jpeg" alt="Cat Collar">
+                    <p><strong>Cat Collar</strong></p>
+                    <p>Price: RM15.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <div class="merch-item">
+                    <img class="merch-img" src="IMAGES/bed.jpeg" alt="Cat Bed">
+                    <p><strong>Cat Bed</strong></p>
+                    <p>Price: RM50.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shopping Cart Section -->
+        <section class="shopping-cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items">
+                <p>Your cart is empty.</p>
+            </ul>
+            <button id="checkout-btn">Proceed to Checkout</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pawfect Treats. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
