@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Pawfect Treats</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1 class="header-title">Welcome to Pawfect Treats</h1>
+        <div class="header-icons">
+            <a href="profile.php" id="profile-link" class="profile-icon">
+                <img id="profile-image" alt="Profile">
+            </a>
+            <a href="cart.php" class="cart-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Cart">
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="adoption.html">Adopt a Cat</a>
+        <a href="guide.html">Care Guide</a>
+        <a href="merchandise.html">Merchandise</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="profile-info">
+            <h2>Profile Details</h2>
+            <img id="profile-image" src="images/profile 1.jpeg" alt="Profile Picture">
+            <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
+            <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
+            <p><strong>Role:</strong> <span id="profile-role">Loading...</span></p>
+        </section>
+
+        <!-- Role-Specific Content (e.g. user's adopted cats or favorites) -->
+        <div id="role-specific-content">
+            <!-- This will be dynamically populated based on the role -->
+            <h3 id="role-content">Loading...</h3>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Pawfect Treats. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawfect Treats - Home</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Pawfect Treats</h1>
+        <div class="header-icons">
+            <a href="profile.php" id="profile-link" class="profile-icon">
+                <img id="profile-image" alt="Profile">
+            </a>
+            <a href="cart.php" class="cart-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Cart">
+            </a>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="adoption.html">Adopt a Cat</a>
+        <a href="guide.html">Care Guide</a>
+        <a href="merchandise.html">Merchandise</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+        <button id="reset-password-btn">Forgot Password?</button> <!-- Reset Password Button -->
+    </div>
+
+    <!-- Password Reset Popup -->
+    <div id="reset-popup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <h3>Reset Password</h3>
+            <label for="reset-email">Enter your email:</label>
+            <input type="email" id="reset-email" required>
+            <button id="confirm-reset">Confirm</button>
+            <button id="close-reset">Cancel</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Pawfect Treats. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
