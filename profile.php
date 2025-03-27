@@ -3,7 +3,7 @@ session_start();
 include 'db_config.php'; // Database connection
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login_process.php");
     exit();
 }
 
@@ -15,7 +15,7 @@ $stmt->bind_result($username, $email, $role, $profile_image);
 $stmt->fetch();
 $stmt->close();
 
-$profile_image = $profile_image ?: ''; // Default image if none set
+$profile_image = $profile_image ?: 'images/default-profile.jpeg'; // Default image if none set
 
 // Fetch adopted cats
 $adopted_cats = [];

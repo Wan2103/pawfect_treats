@@ -1,46 +1,58 @@
 <?php
 session_start();
 include 'db_config.php';
-
-// Set the header to return JSON
 header('Content-Type: application/json');
 
-// Check if 'action' is set and if it is 'merchandise'
-if (isset($_GET['action']) && $_GET['action'] == 'merchandise') {
-    // Query to fetch all merchandise
-    $query = "SELECT images, item_name, price FROM merchandises";
-    $result = $conn->query($query);
-    
-    // Check if the query was successful
-    if ($result) {
-        $merchandises = []; // Array to hold the merchandise data
-        
-        // Fetch all merchandise records
-        while ($row = $result->fetch_assoc()) {
-            // Append each merchandise record to the array
-            $merchandises[] = [
-                'images' => $row['images'],
-                'item_name' => $row['item_name'],
-                'price' => $row['price']
-            ];
-        }
-        
-        // Check if we have merchandise data
-        if (count($merchandises) > 0) {
-            // Return the merchandise data as a JSON response
-            echo json_encode(["success" => true, "data" => $merchandises]);
-        } else {
-            // No merchandise found, return a message
-            echo json_encode(["success" => false, "message" => "No merchandise found."]);
-        }
-    } else {
-        // Query failed, return a message
-        echo json_encode(["success" => false, "message" => "Failed to execute query."]);
-    }
+// Ensure action is set
+if (!isset($_GET['action'])) {
+    echo json_encode(["success" => false, "message" => "Invalid request."]);
     exit();
-} else {
-    // Invalid action
-    echo json_encode(["success" => false, "message" => "Invalid action."]);
+}
+
+// Fetch all merchandise
+if ($_GET['action'] == 'all_merch') {
+    $stmt = $conn->prepare("SELECT id, item_name, description, stock, price, images, admin_name FROM merchandises");
+    
+    if (!$stmt->execute()) {
+        echo json_encode(["success" => false, "message" => "Database query failed: " . $conn->error]);
+        exit();
+    }
+
+    $result = $stmt->get_result();
+    $merchandise = [];
+    while ($row = $result->fetch_assoc()) {
+        $merchandise[] = $row;
+    }
+
+    // If no merchandise found, return an empty message
+    if (empty($merchandise)) {
+        echo json_encode(["success" => false, "message" => "No merchandise available."]);
+        exit();
+    }
+
+    echo json_encode(["success" => true, "merchandise" => $merchandise]);
+    exit();
+}
+
+// Fetch a random "Merchandise of the Day"
+if ($_GET['action'] == 'merch_of_the_day') {
+    $stmt = $conn->prepare("SELECT id, item_name, description, stock, price, images, admin_name FROM merchandises ORDER BY RAND() LIMIT 1");
+
+    if (!$stmt->execute()) {
+        echo json_encode(["success" => false, "message" => "Database query failed: " . $conn->error]);
+        exit();
+    }
+
+    $result = $stmt->get_result();
+    $merch = $result->fetch_assoc();
+
+    // If no merchandise exists, return an error message
+    if (!$merch) {
+        echo json_encode(["success" => false, "message" => "No merchandise found."]);
+        exit();
+    }
+
+    echo json_encode(["success" => true, "merchandise" => $merch]);
     exit();
 }
 ?>

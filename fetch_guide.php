@@ -9,41 +9,42 @@ if (!isset($_GET['action'])) {
     exit();
 }
 
-// Fetch all available cats (Fix: Removed 'status' column)
-if ($_GET['action'] == 'all_cats') {
-    $stmt = $conn->prepare("SELECT id, name, gender, age, image FROM cats");
+// Fetch all guides (Fix: Changed 'guides' to 'care_guides')
+if ($_GET['action'] == 'all_guides') {
+    $stmt = $conn->prepare("SELECT id, title, content FROM care_guides"); 
     if (!$stmt->execute()) {
         echo json_encode(["success" => false, "message" => "Database query failed: " . $conn->error]);
         exit();
     }
-    
+
     $result = $stmt->get_result();
-    $cats = [];
+    $guides = [];
     while ($row = $result->fetch_assoc()) {
-        $cats[] = $row;
+        $guides[] = $row;
     }
 
-    echo json_encode(["success" => true, "cats" => $cats]);
+    echo json_encode(["success" => true, "guides" => $guides]);
     exit();
 }
 
-// Fetch a random "Cat of the Day"
-if ($_GET['action'] == 'cat_of_the_day') {
-    $stmt = $conn->prepare("SELECT id, name, gender, age, image FROM cats ORDER BY RAND() LIMIT 1");
+// Fetch a single guide (Fix: Changed 'guides' to 'care_guides')
+if ($_GET['action'] == 'single_guide' && isset($_GET['id'])) {
+    $stmt = $conn->prepare("SELECT title, content FROM care_guides WHERE id = ?");
+    $stmt->bind_param("i", $_GET['id']);
     if (!$stmt->execute()) {
         echo json_encode(["success" => false, "message" => "Database query failed: " . $conn->error]);
         exit();
     }
 
     $result = $stmt->get_result();
-    $cat = $result->fetch_assoc();
+    $guide = $result->fetch_assoc();
 
-    if (!$cat) {
-        echo json_encode(["success" => false, "message" => "No cat found."]);
+    if (!$guide) {
+        echo json_encode(["success" => false, "message" => "Guide not found."]);
         exit();
     }
 
-    echo json_encode(["success" => true, "cat" => $cat]);
+    echo json_encode(["success" => true, "guide" => $guide]);
     exit();
 }
 ?>

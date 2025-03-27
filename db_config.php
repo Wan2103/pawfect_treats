@@ -1,14 +1,13 @@
 <?php
-$servername = "localhost"; // Database host
-$username = "root"; // Database username
-$password = ""; // No password
-$database = "pawfect_treats"; // Database name
+$servername = "localhost";
+$username = "root";  // Change this if using a different DB user
+$password = "";      // Set a strong password for production
+$dbname = "pawfect_treats";
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $database);
+// Secure connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode(["success" => false, "message" => "Database connection failed: " . $conn->connect_error]));
 }
 ?>

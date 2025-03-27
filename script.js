@@ -1,140 +1,105 @@
-// This event listener will execute once the DOM content has fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-    // Declare variables to hold elements that will be dynamically updated
-    const profileImage = document.getElementById("profile-image");
-    const catImage = document.getElementById("cat-img");
-    const catName = document.getElementById("cat-name");
-    const catGender = document.getElementById("cat-gender");
-    const catAge = document.getElementById("cat-age");
-    const merchandiseImage = document.getElementById("merchandise-img");
-    const merchandiseName = document.getElementById("merchandise-name");
-    const merchandisePrice = document.getElementById("merchandise-price");
-    const reviewsContainer = document.getElementById("reviews-container");
-    const profileUsername = document.getElementById("profile-username");
-    const profileEmail = document.getElementById("profile-email");
-    const profileRole = document.getElementById("profile-role");
-
-    // Function to fetch data from a given URL and execute a callback with the data
-    function fetchData(url, callback) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    callback(data);
-                } else {
-                    console.error(`Error fetching data from ${url}:`, data.message || "Unknown error");
-                }
-            })
-            .catch(error => console.error(`Error loading ${url}:`, error));
-    }
-
-    // Fetch Profile Data (including profile image, username, email, etc.)
-    fetchData("fetch_profile.php?action=profile", (data) => {
-        console.log(data);  // Log the response to verify data
-        if (data.success) {
-            profileUsername.textContent = data.username;
-            profileEmail.textContent = data.email;
-            profileRole.textContent = data.role;
-            profileImage.src = data.images;
-        } else {
-            console.error("Profile data not fetched successfully");
-        }
-    });
-
-    // Fetch Cat of the Day details
-    fetchData("fetch_cat.php?action=cat", (data) => {
-        if (data.image && data.name && data.gender && data.age) {
-            catImage.src = data.image;
-            catName.textContent = data.name;
-            catGender.textContent = data.gender;
-            catAge.textContent = data.age;
-        } else {
-            catName.textContent = "Cat details unavailable";
-            catGender.textContent = "";
-            catAge.textContent = "";
-            console.error("Cat data is incomplete in response");
-        }
-    });
-
-    // Fetch Merchandise of the Day details
-    fetchData("fetch_merchandise.php?action=merchandise", (data) => {
-        if (data.data && data.data.length > 0) {
-            const merchandise = data.data[0]; // Assuming there's one item in the response array
-            merchandiseName.textContent = merchandise.item_name;  // 'item_name' from database
-            merchandisePrice.textContent = `$${merchandise.price}`;  // 'price' from database
-        } else {
-            merchandiseName.textContent = "No merchandise available.";
-            merchandisePrice.textContent = "";
-        }
-    });
-
-    // Fetch User Reviews and display them
-    fetchData("fetch_reviews.php?action=reviews", (data) => {
-        reviewsContainer.innerHTML = "";
-        if (data.reviews && Array.isArray(data.reviews)) {
-            data.reviews.forEach(review => {
-                const reviewElement = document.createElement("p");
-                if (review.review && review.review_point) {
-                    reviewElement.textContent = `${review.review} (Rating: ${review.review_point}/5)`;
-                } else {
-                    reviewElement.textContent = `${review} (Rating: Not Available)`;
-                }
-                reviewsContainer.appendChild(reviewElement);
-            });
-        } else {
-            console.error("No reviews found or reviews data is in incorrect format");
-            reviewsContainer.innerHTML = "No reviews available.";
-        }
-    });
+    if (document.getElementById("cat-img")) loadCatOfTheDay();
+    if (document.getElementById("merchandise-img")) loadMerchOfTheDay();
+    if (document.getElementById("reviews-container")) loadReviews();
+    if (document.getElementById("profile-image")) loadProfile();
 });
 
-// This event listener will manage the login form and reset password functionality
-document.addEventListener("DOMContentLoaded", function() {
-    const loginForm = document.getElementById('login-form');
+// Generic function to fetch data
+function fetchData(url, callback) {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                callback(data);
+            } else {
+                console.error(`Error fetching data from ${url}:`, data.message);
+            }
+        })
+        .catch(error => console.error(`Error loading ${url}:`, error));
+}
 
-    // Handle login form submission via AJAX
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+// Load Profile Data
+function loadProfile() {
+    fetchData("index.php", (data) => {
+        updateElementImage("profile-image", data.userImage);
+    });
+}
 
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
+// Load Cat of the Day
+function loadCatOfTheDay() {
+    fetchData("index.php", (data) => {
+        if (data.cat) {
+            updateElementImage("cat-img", data.cat.image);
+            updateElementText("cat-name", data.cat.name);
+            updateElementText("cat-gender", data.cat.gender);
+            updateElementText("cat-age", `${data.cat.age} years`);
+        }
+    });
+}
 
-        var formData = new FormData();
-        formData.append('email', email);
-        formData.append('password', password);
+// Load Merchandise of the Day
+function loadMerchOfTheDay() {
+    fetchData("index.php", (data) => {
+        if (data.merchandise) {
+            updateElementImage("merchandise-img", data.merchandise.image);
+            updateElementText("merchandise-name", data.merchandise.name);
+            updateElementText("merchandise-price", `$${data.merchandise.price}`);
+        }
+    });
+}
 
-        fetch('login_process.php', {
-            method: 'POST',
+// Load User Reviews
+function loadReviews() {
+    fetchData("index.php", (data) => {
+        const reviewsContainer = document.getElementById("reviews-container");
+        if (!reviewsContainer) return;
+
+        reviewsContainer.innerHTML = ""; // Clear existing reviews
+
+        if (data.reviews.length === 0) {
+            reviewsContainer.innerHTML = "<p>No reviews yet.</p>";
+            return;
+        }
+
+        data.reviews.forEach(review => {
+            const reviewElement = document.createElement("p");
+            reviewElement.textContent = `⭐ ${review}`;
+            reviewsContainer.appendChild(reviewElement);
+        });
+    });
+}
+
+// Utility function to update text content of an element
+function updateElementText(elementId, text) {
+    const element = document.getElementById(elementId);
+    if (element) element.textContent = text;
+}
+
+// Utility function to update image source
+function updateElementImage(elementId, src) {
+    const element = document.getElementById(elementId);
+    if (element) element.src = src;
+}
+
+// Handle login form
+const loginForm = document.getElementById("login-form");
+if (loginForm) {
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        fetch("login_process.php", {
+            method: "POST",
             body: formData
         })
         .then(response => response.json())
         .then(data => {
+            alert(data.message);
             if (data.success) {
-                window.location.replace(data.redirect); // Redirect to index.html
-            } else {
-                alert(data.message); // Show error message
+                window.location.href = "index.html";
             }
         })
-        .catch(() => {
-            alert('There was an error. Please try again.');
-        });
+        .catch(error => console.error("Error:", error));
     });
-
-    // Handle Forgot Password button click
-    document.getElementById('reset-password-btn').addEventListener('click', function() {
-        document.getElementById('reset-popup').style.display = 'block';
-    });
-
-    // Close reset popup
-    document.getElementById('close-reset').addEventListener('click', function() {
-        document.getElementById('reset-popup').style.display = 'none';
-    });
-
-    // Handle reset password confirmation
-    document.getElementById('confirm-reset').addEventListener('click', function() {
-        var resetEmail = document.getElementById('reset-email').value;
-        // Implement the password reset logic here (e.g., AJAX request to reset password)
-        alert("Password reset instructions have been sent to " + resetEmail);
-        document.getElementById('reset-popup').style.display = 'none';
-    });
-});
+}

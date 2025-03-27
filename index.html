@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Treats - Home</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -19,6 +19,7 @@
             </a>
         </div>
     </header>
+
     <nav>
         <a href="index.html">Home</a>
         <a href="adoption.html">Adopt a Cat</a>
@@ -26,13 +27,14 @@
         <a href="merchandise.html">Merchandise</a>
         <a href="profile.html">Profile</a>
     </nav>
+
     <main>
         <section class="daily-features">
-            <div class="cat-feature">
-                <h2>Cat of the Day</h2>
-                <div class="cat-info">
-                    <img id="cat-img" class="cat-img" alt="Cat">
-                    <div class="cat-details">
+            <div class="feature-card">
+                <h2>🐱 Cat of the Day</h2>
+                <div class="feature-content">
+                    <img id="cat-img" class="feature-img" alt="Cat">
+                    <div class="feature-details">
                         <p><strong>Name:</strong> <span id="cat-name">Loading...</span></p>
                         <p><strong>Gender:</strong> <span id="cat-gender">Loading...</span></p>
                         <p><strong>Age:</strong> <span id="cat-age">Loading...</span></p>
@@ -41,11 +43,11 @@
                 </div>
             </div>
             
-            <div class="cat-feature">
-                <h2>Item of the Day</h2>
-                <div class="cat-info">
-                    <img id="merchandise-img" class="cat-img" alt="Merchandise">
-                    <div class="cat-details">
+            <div class="feature-card">
+                <h2>🛍️ Item of the Day</h2>
+                <div class="feature-content">
+                    <img id="merchandise-img" class="feature-img" alt="Merchandise">
+                    <div class="feature-details">
                         <p><strong>Name:</strong> <span id="merchandise-name">Loading...</span></p>
                         <p><strong>Price:</strong> <span id="merchandise-price">Loading...</span></p>
                         <button class="buy-now-btn" onclick="window.location.href='merchandise.html'">Buy Now</button>
@@ -55,15 +57,15 @@
         </section>
         
         <section class="reviews">
-            <h2>User Reviews</h2>
+            <h2>🌟 User Reviews</h2>
             <div id="reviews-container">
                 <p>Loading reviews...</p>
             </div>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2025 Pawfect Treats. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
-

@@ -1,84 +1,70 @@
-/* Kid-Friendly Design */
-html, body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background-color: #fce4ec;
-    padding: 0;
-    text-align: center;
-    height: 100%;
+/* General Styles - Softer & More Playful */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fffae3; /* Light pastel background */
     margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Ensures footer stays at the bottom of the page */
-main {
-    flex: 1;
-}
-
-/* Header Styles */
+/* Header - More Fun & Welcoming */
 header {
-    background-color: #ff80ab;
+    background-color: #ffcccb; /* Soft pink */
+    color: #4d4d4d;
     padding: 20px;
-    font-size: 24px;
-    color: white;
-    text-shadow: 2px 2px 2px #ff4081;
-    position: relative;
-    display: flex;
-    justify-content: space-between; /* Ensures title is centered while icons are at the far right */
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.header-title {
-    flex-grow: 1; /* Ensures the title takes up the available space and is centered */
     text-align: center;
-    padding-left: 10px;
-    margin-left: 10px;
+    display: flex;
+    justify-content: center; /* Center everything */
+    align-items: center;
+    border-bottom: 4px solid #ff4081; /* Fun border */
+    position: relative;
 }
 
+/* Header Title - Fully Centered */
+.header-title {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1; /* Ensures it takes up space and remains centered */
+}
+
+/* Header Icons - Keep at the Right */
 .header-icons {
+    position: absolute;
+    right: 20px;
     display: flex;
     gap: 15px;
-    justify-content: flex-end; /* Ensures the icons align to the right */
 }
 
-/* Profile and Cart Icon Styles */
-.profile-icon img, .cart-icon img {
-    width: 40px;
-    height: 40px;
+.header-icons img {
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
 
-.profile-icon img:hover, .cart-icon img:hover {
+.header-icons img:hover {
     transform: scale(1.1);
 }
 
-.cart-icon img {
-    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
-}
-
-.cart-icon img:hover {
-    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.3));
-}
-
-/* Navigation */
+/* Navigation - Friendly Look */
 nav {
-    background-color: #ff4081;
-    padding: 10px;
+    background-color: #ff4081; /* Softer pink */
+    padding: 12px;
+    text-align: center;
 }
 
 nav a {
     color: white;
     font-weight: bold;
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 12px 20px;
     display: inline-block;
-    font-size: 18px;
-    border-radius: 10px;
+    border-radius: 20px;
     transition: background-color 0.3s, color 0.3s;
+    font-size: 18px;
 }
 
 nav a:hover {
@@ -86,17 +72,90 @@ nav a:hover {
     color: #ff4081;
 }
 
-/* Buttons */
+/* Main Container */
+main {
+    flex: 1;
+    padding: 25px;
+    text-align: center;
+}
+
+/* Home Page Features Section */
+.daily-features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Feature Card */
+.feature-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+}
+
+/* Feature Content */
+.feature-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Feature Image */
+.feature-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Feature Details */
+.feature-details {
+    text-align: left;
+}
+
+/* User Reviews Section */
+.reviews {
+    background-color: #ffcccb;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    text-align: center;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Review Scrolling */
+#reviews-container {
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Friendly Buttons */
 button {
     background-color: #ff4081;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 10px;
+    padding: 12px 18px;
+    border-radius: 50px; /* Rounded buttons */
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s ease-in-out;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
@@ -104,125 +163,224 @@ button:hover {
     transform: scale(1.05);
 }
 
-button:focus {
-    outline: 3px solid #ff4081;
-}
-
-/* Popup Styling */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-    display: none;
-    z-index: 1001;
-    width: 350px;
-    max-width: 90%;
-    text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
+/* Button Container (Align Buttons) */
+.button-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.popup-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.popup label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.popup input {
-    width: 90%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ff4081;
-    text-align: center;
-}
-
-.popup button {
-    background: #ff4081;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80%;
+    gap: 30px;
     margin-top: 10px;
 }
 
-.popup button:hover {
-    background: #ff80ab;
+/* Adoption Section - More Playful */
+#adoption-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }
 
-.popup button:focus {
-    outline: 3px solid #ff4081;
+/* Individual Cat Card - Family Friendly */
+.cat-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 85%;
+    max-width: 800px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    border: 3px solid #ff80ab; /* Cute pink border */
 }
 
-/* Overlay to dim background */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Name Centered at Top */
+.cat-card .cat-name {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4081;
+    text-align: center;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    z-index: 1000;
 }
 
-/* Fade In Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -55%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
+/* Image Section */
+.cat-card img {
+    width: 160px;
+    height: 160px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 3px solid #ffcccb;
+}
+
+/* Details Section */
+.cat-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+/* Friendly Text */
+.cat-details p {
+    margin: 6px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Adoption & View More Buttons - Same Styling */
+.adopt-btn, .view-more-btn {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    align-self: start;
+    position: relative;
+}
+
+/* Paw Print Effect on Hover - FIXED */
+.adopt-btn::before , .view-more-btn::before, .read-more::before{
+    content: "🐾";
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show Paw Print Only When Hovering */
+.adopt-btn:hover::before, .view-more-btn:hover::before, .read-more:hover::before {
+    opacity: 1;
+}
+
+/* Hover Effect for View More (Without Paw Print) */
+.view-more-btn:hover {
+    background-color: #ff80ab;
+    transform: scale(1.05);
+}
+
+/* Guide Section - Friendly and Playful */
+#guide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual Guide Card - Horizontal Layout */
+.guide-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 85%;
+    max-width: 800px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: center; /* ✅ Center the content */
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    border: 3px solid #ff80ab; /* Cute pink border */
+}
+
+/* Guide Title - Centered */
+.guide-card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff4081;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Guide Content - Centered */
+.guide-card p {
+    font-size: 16px;
+    color: #333;
+    margin: 0 auto; /* ✅ Centers text inside */
+    line-height: 1.5;
+    max-width: 90%; /* ✅ Prevents text from stretching too wide */
+}
+
+/* Read More Button - Centered */
+.read-more {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    align-self: center;
+    position: relative;
+}
+
+.read-more:hover {
+    background-color: #ff80ab;
+    transform: scale(1.05);
 }
 
 /* Footer */
 footer {
-    background: #ff4081;
+    background-color: #ff80ab;
     color: white;
     text-align: center;
-    padding: 10px;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    margin-top: auto; /* Ensures footer stays at the bottom */
+    padding: 15px;
+    margin-top: auto;
+    font-size: 18px;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    header {
-        font-size: 20px;
+/* Responsive Design */
+@media (max-width: 600px) {
+    .cat-card {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
+        width: 95%;
+        padding-top: 50px;
     }
 
-    .header-icons {
+    .cat-card .cat-name {
+        position: static;
+        transform: none;
+        margin-bottom: 12px;
+    }
+
+    .cat-card img {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+
+    .adopt-btn {
+        align-self: center;
+    }
+
+    .guide-card {
         flex-direction: column;
-        gap: 10px;
+        align-items: center;
+        text-align: center;
+        width: 95%;
+        padding: 20px;
     }
 
-    nav a {
-        font-size: 16px;
-        padding: 8px 12px;
-    }
-
-    button {
-        font-size: 16px;
-    }
-
-    .popup {
-        width: 90%;
+    .read-more {
+        align-self: center;
     }
 }
